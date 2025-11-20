@@ -1,8 +1,8 @@
 import os
 
 # Настройки бота
-BOT_TOKEN = os.environ.get('BOT_TOKEN')
-SPREADSHEET_ID = os.environ.get('SPREADSHEET_ID')
+BOT_TOKEN = os.environ.get('8328246749:AAGCTumwVb7OyPhzMRkpyGLccPSNQy8f344')
+SPREADSHEET_ID = os.environ.get('1nJbrwHz0jqWs8sN9a1L22JpNozn7Qf1V8cZ4skz55Qs')
 MASTER_CHAT_ID = os.environ.get('MASTER_CHAT_ID', '')
 MASTER_USER_ID = os.environ.get('MASTER_USER_ID', '')
 
