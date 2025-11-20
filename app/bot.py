@@ -759,4 +759,31 @@ def main():
     )
     
     # Обработчик меню мастера
-    master_conv_handler = Conversation
+    master_conv_handler = ConversationHandler(
+        entry_points=[MessageHandler(filters.Regex('^👨‍💼 Режим мастера$'), bot.master_menu)],
+        states={
+            MASTER_MENU: [
+                MessageHandler(filters.Regex('^📊 Записи на сегодня$'), bot.show_today_bookings),
+                MessageHandler(filters.Regex('^📅 Записи на завтра$'), bot.show_tomorrow_bookings),
+                MessageHandler(filters.Regex('^🗓️ Все активные записи$'), bot.show_all_active_bookings),
+                MessageHandler(filters.Regex('^🔙 Главное меню$'), bot.show_main_menu),
+            ]
+        },
+        fallbacks=[]
+    )
+    
+    # Добавляем все обработчики
+    application.add_handler(reg_conv_handler)
+    application.add_handler(booking_conv_handler)
+    application.add_handler(cancel_conv_handler)
+    application.add_handler(master_conv_handler)
+    
+    # Простые обработчики сообщений
+    application.add_handler(MessageHandler(filters.Regex('^📋 Мои записи$'), bot.show_my_bookings))
+    application.add_handler(MessageHandler(filters.Regex('^🔙 Главное меню$'), bot.show_main_menu))
+    
+    # Запускаем бота
+    application.run_polling()
+
+if __name__ == '__main__':
+    main()
